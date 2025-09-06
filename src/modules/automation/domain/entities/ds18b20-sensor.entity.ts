@@ -2,10 +2,10 @@ export class Ds18b20Sensor {
     constructor(
       public ds18b20SensorId: string,
       public temperatureCelsius: number,
-      public temperatureFahrenheit: number,
-      public temperatureKelvin: number,
-      public createdAt: Date,
-      public automationId: string,
+      public temperatureFahrenheit?: number,
+      public temperatureKelvin?: number,
+      public createdAt?: Date,
+      public automationId?: string,
     ) {}
   }
   
