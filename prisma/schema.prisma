@@ -1,0 +1,120 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Automation {
+  automationId String   @id @db.VarChar(36) @map("automation_id")
+  type         String?  @db.VarChar(150)
+  name         String?  @db.VarChar(150)
+  address      String?  @db.VarChar(150)
+  startDate    DateTime? @map("start_date")
+  endDate      DateTime? @map("end_date")
+
+  // Relaciones
+  phs                       Ph[]
+  dht22Sensors              Dht22Sensor[]
+  ds18b20Sensors            Ds18b20Sensor[]
+  actuators                 Actuator[]
+  ultrasonicDistanceSensors UltrasonicDistanceSensor[]
+  turbiditySensors          TurbiditySensor[]
+  sensors                   Sensor[]
+
+  @@map("automation")
+}
+
+model Ph {
+  phId                  String    @id @db.VarChar(36) @map("ph_id")
+  analogDigitalConverter Int?      @map("analog_digital_converter")
+  voltaje               Decimal?  @db.Decimal(3, 2)
+  phValue               Decimal?  @db.Decimal(2,2) @map("ph_value")
+  createdAt             DateTime? @default(now()) @map("created_at")
+
+  automationId String
+  automation   Automation @relation(fields: [automationId], references: [automationId])
+
+  @@map("ph")
+}
+
+model Dht22Sensor {
+  dht22SensorId        String    @id @db.VarChar(36) @map("dht22_sensor_id")
+  temperatureCelsius   Decimal?  @db.Decimal(3, 2) @map("temperature_celsius")
+  temperatureFahrenheit Decimal? @db.Decimal(3, 2) @map("temperature_fahrenheit")
+  temperatureKelvin    Decimal?  @db.Decimal(3, 2) @map("temperature_kelvin")
+  humidity             Decimal?  @db.Decimal(2, 2)
+  createdAt            DateTime? @default(now()) @map("created_at")
+
+  automationId String
+  automation   Automation @relation(fields: [automationId], references: [automationId])
+
+  @@map("dht22_sensor")
+}
+
+model Ds18b20Sensor {
+  ds18b20SensorId      String    @id @db.VarChar(36) @map("ds18b20_sensor_id")
+  temperatureCelsius   Decimal?  @db.Decimal(3, 2) @map("temperature_celsius")
+  temperatureFahrenheit Decimal? @db.Decimal(3, 2) @map("temperature_fahrenheit")
+  temperatureKelvin    Decimal?  @db.Decimal(3, 2) @map("temperature_kelvin")
+  createdAt            DateTime? @default(now()) @map("created_at")
+
+  automationId String
+  automation   Automation @relation(fields: [automationId], references: [automationId])
+
+  @@map("ds18b20_sensor")
+}
+
+model Actuator {
+  actuatorId String   @id @db.VarChar(36) @map("actuator_id")
+  type       String?  @db.VarChar(50)
+  status     Boolean? @db.TinyInt
+  createdAt  DateTime? @default(now()) @map("created_at")
+  updatedAt  DateTime? @updatedAt @map("updated_at")
+
+  automationId String
+  automation   Automation @relation(fields: [automationId], references: [automationId])
+
+  @@map("actuator")
+}
+
+model UltrasonicDistanceSensor {
+  ultrasonicDistanceSensorId String   @id @db.VarChar(36) @map("ultrasonic_distance_sensor_id")
+  time                       Int?
+  distance                   Decimal? @db.Decimal(3, 2)
+  createdAt                  DateTime? @default(now()) @map("created_at")
+
+  automationId String
+  automation   Automation @relation(fields: [automationId], references: [automationId])
+
+  @@map("ultrasonic_distance_sensor")
+}
+
+model TurbiditySensor {
+  turbiditySensorId      String   @id @db.VarChar(36) @map("turbidity_sensor_id")
+  analogDigitalConverter Int?     @map("analog_digital_converter")
+  voltaje                Decimal? @db.Decimal(3, 2)
+  turbidity              Int?
+  createdAt              DateTime? @default(now()) @map("created_at")
+
+  automationId String
+  automation   Automation @relation(fields: [automationId], references: [automationId])
+
+  @@map("turbidity_sensor")
+}
+
+model Sensor {
+  sensorId   Int      @id @map("sensor_id")
+  name       String?  @db.VarChar(45)
+  code       String?  @db.VarChar(45)
+  data       String?  @db.Text
+  createdAt  DateTime? @default(now()) @map("created_at")
+
+  automationId String
+  automation   Automation @relation(fields: [automationId], references: [automationId])
+
+  @@map("sensor")
+}
