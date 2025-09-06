@@ -7,5 +7,4 @@ export class Automation {
       public address?: string,      
       public endDate?: Date,
     ) {}
-  }
-  
+}  

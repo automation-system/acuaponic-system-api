@@ -7,5 +7,4 @@ export class TurbiditySensor {
       public createdAt?: Date,      
       public automationId?: string,
     ) {}
-  }
-  
+}  

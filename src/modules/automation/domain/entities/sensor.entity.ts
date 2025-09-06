@@ -7,5 +7,4 @@ export class Sensor {
       public createdAt?: Date,
       public automationId?: string,
     ) {}
-  }
-  
+}  

@@ -8,5 +8,4 @@ export class Dht22Sensor {
       public createdAt?: Date,
       public automationId?: string,
     ) {}
-  }
-  
+}  

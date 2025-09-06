@@ -7,5 +7,4 @@ export class Ph {
       public createdAt?: Date,
       public automationId?: string,
     ) {}
-  }
-  
+}  

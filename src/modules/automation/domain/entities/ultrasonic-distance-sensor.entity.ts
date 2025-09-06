@@ -6,5 +6,4 @@ export class UltrasonicDistanceSensor {
         public createdAt?: Date,   
         public automationId?: string,   
     ) {}
-}
-  
+}  

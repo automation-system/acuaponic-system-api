@@ -7,5 +7,4 @@ export class Ds18b20Sensor {
       public createdAt?: Date,
       public automationId?: string,
     ) {}
-  }
-  
+}  

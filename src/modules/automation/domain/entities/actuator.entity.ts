@@ -7,5 +7,4 @@ export class Actuator {
       public updatedAt?: Date,
       public automationId?: string,
     ) {}
-  }
-  
+}  
