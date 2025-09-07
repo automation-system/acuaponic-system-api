@@ -3,6 +3,6 @@ export class Ds18b20SensorResponseDto {
     temperatureCelsius: number;
     temperatureFahrenheit?: number;
     temperatureKelvin?: number;
-    createdAt?: Date;
     automationId?: string;
+    createdAt?: Date;    
 }  

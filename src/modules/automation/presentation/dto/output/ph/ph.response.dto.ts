@@ -1,8 +1,8 @@
 export class PhResponseDto {
-    phId: string;
+    phId: string;    
+    phValue: number;    
     analogDigitalConverter?: number;
     voltaje?: number;
-    phValue: number;
-    createdAt?: Date;
     automationId?: string;
+    createdAt?: Date;    
 }  

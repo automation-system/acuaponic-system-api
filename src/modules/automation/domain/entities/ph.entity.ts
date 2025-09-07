@@ -3,8 +3,8 @@ export class Ph {
       public phId: string,      
       public phValue: number,
       public analogDigitalConverter?: number,
-      public voltaje?: number,      
-      public createdAt?: Date,
-      public automationId?: string,
+      public voltaje?: number,
+      public automationId?: string,      
+      public createdAt?: Date,      
     ) {}
 }  

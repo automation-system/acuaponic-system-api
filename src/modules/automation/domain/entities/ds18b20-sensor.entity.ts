@@ -4,7 +4,7 @@ export class Ds18b20Sensor {
       public temperatureCelsius: number,
       public temperatureFahrenheit?: number,
       public temperatureKelvin?: number,
-      public createdAt?: Date,
       public automationId?: string,
+      public createdAt?: Date,      
     ) {}
 }  

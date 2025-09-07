@@ -15,11 +15,29 @@ import { GetDht22sUseCase } from "./application/use-cases/dht22/get-dht22.use-ca
 import { Dht22Repository } from "./domain/repositories/dht22.repository";
 import { Dht22PrismaRepository } from "./infrastructure/presistence/dht22.prisma.repository";
 import { Dht22Controller } from "./presentation/controllers/dht22-sensor.controller";
+import { Ds18b20Controller } from "./presentation/controllers/ds18b20-sensor.controller";
+import { Ds18b20Service } from "./application/services/ds18b20.service";
+import { CreateDs18b20UseCase } from "./application/use-cases/ds18b20/create-ds18b20.use-case";
+import { GetDs18b20sUseCase } from "./application/use-cases/ds18b20/get-ds18b20.use-case";
+import { Ds18b20Repository } from "./domain/repositories/ds18b20.repository";
+import { Ds18b20PrismaRepository } from "./infrastructure/presistence/ds18b20.prisma.repository";
+import { PhService } from "./application/services/ph.service";
+import { CreatePhUseCase } from "./application/use-cases/ph/create-ph.use-case";
+import { GetPhsUseCase } from "./application/use-cases/ph/get-phs.use-case";
+import { PhRepository } from "./domain/repositories/ph.repository";
+import { PhPrismaRepository } from "./infrastructure/presistence/ph.prisma.repository";
+import { PhController } from "./presentation/controllers/ph.controller";
+import { UltrasonicDistanceSensorController } from "./presentation/controllers/ultrasonic-distance-sensor.controller";
+import { UltrasonicDistanceSensorService } from "./application/services/ultrasonic-distance-sensor.service";
+import { CreateUltrasonicDistanceSensorUseCase } from "./application/use-cases/ultrasonic/create-ultrasonic-distance-sensor.use-case";
+import { GetUltrasonicDistanceSensorsUseCase } from "./application/use-cases/ultrasonic/get-ultrasonic-distance-sensors.use-case";
+import { UltrasonicDistanceSensorRepository } from "./domain/repositories/ultrasonic-distance-sensor.repository";
+import { UltrasonicDistanceSensorPrismaRepository } from "./infrastructure/presistence/ultrasonic-distance-sensor.prisma.repository";
 
 
 @Module({
     imports: [], 
-    controllers: [ActuatorController,Dht22Controller],
+    controllers: [ActuatorController,Dht22Controller,Ds18b20Controller,PhController,UltrasonicDistanceSensorController],
     providers: [
         PrismaService,
 
@@ -40,7 +58,25 @@ import { Dht22Controller } from "./presentation/controllers/dht22-sensor.control
         GetDht22sUseCase,
         {
             provide: Dht22Repository, useClass:Dht22PrismaRepository
-        }
+        },
+
+        //Ds18b20
+        Ds18b20Service,
+        CreateDs18b20UseCase,
+        GetDs18b20sUseCase,
+        { provide: Ds18b20Repository, useClass: Ds18b20PrismaRepository },
+
+        //sensor ph
+        PhService,
+        CreatePhUseCase,
+        GetPhsUseCase,
+        { provide: PhRepository, useClass: PhPrismaRepository},
+
+        //sensor ultrasonido
+        UltrasonicDistanceSensorService,
+        CreateUltrasonicDistanceSensorUseCase,
+        GetUltrasonicDistanceSensorsUseCase,
+        { provide: UltrasonicDistanceSensorRepository, useClass: UltrasonicDistanceSensorPrismaRepository},
     ],
     exports: [],
 })

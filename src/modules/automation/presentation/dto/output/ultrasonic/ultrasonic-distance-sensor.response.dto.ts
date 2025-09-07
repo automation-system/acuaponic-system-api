@@ -1,7 +1,7 @@
 export class UltrasonicDistanceSensorResponseDto {
-    ultrasonicDistanceSensorId: string;
-    time?: number;
+    ultrasonicDistanceSensorId: string;    
     distance: number;
-    createdAt?: Date;
+    time?: number;
     automationId?: string;
+    createdAt?: Date;    
 }  
