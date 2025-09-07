@@ -6,5 +6,6 @@ export class Automation {
       public startDate: Date,
       public address?: string,      
       public endDate?: Date,
+      public userId?: string,
     ) {}
 }  

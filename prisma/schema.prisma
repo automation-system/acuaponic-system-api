@@ -8,6 +8,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  userId          String       @id @db.VarChar(36) @map("user_id")
+  name            String       @db.VarChar(90)
+  lastName        String       @db.VarChar(90)     @map("last_name")
+  email           String       @db.VarChar(90)
+  cellPhoneNumber String       @db.VarChar(12)     @map("cell_phone_number")
+  dni             String       @db.Char(8)
+  userName        String       @db.VarChar(90)     @map("user_name")
+  password        String       @db.VarChar(45)
+  createdAt       DateTime?    @default(now())     @map("created_at")
+  updatedAt       DateTime?    @updatedAt()          @map("updated_at")
+  
+  automations     Automation[]
+
+  @@map("user")
+}
+
 model Automation {
   automationId String   @id @db.VarChar(36) @map("automation_id")
   type         String  @db.VarChar(150)
@@ -24,6 +41,10 @@ model Automation {
   ultrasonicDistanceSensors UltrasonicDistanceSensor[]
   turbiditySensors          TurbiditySensor[]
   sensors                   Sensor[]
+
+  //fk
+  userId String? @db.VarChar(36) @map("user_id")
+  user User? @relation(fields: [userId], references: [userId])
 
   @@map("automation")
 }
@@ -70,7 +91,7 @@ model Ds18b20Sensor {
 
 model Actuator {
   actuatorId String   @id @db.VarChar(36) @map("actuator_id")
-  type       String  @db.VarChar(50)
+  type       String  @db.VarChar(50) @unique
   status     Boolean @db.TinyInt
   createdAt  DateTime? @default(now()) @map("created_at")
   updatedAt  DateTime? @updatedAt @map("updated_at")
