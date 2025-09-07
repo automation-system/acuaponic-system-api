@@ -17,6 +17,8 @@ $ nohup npm run start:prod > api.log 2>&1 &
 
 # Para verificar que está corriendo:
 $ ps aux | grep node
+$ ps -ef | grep "node dist/main"
+
 
 # Para matar el proceso:
-kill -9 <PID>
+kill -9 34639
