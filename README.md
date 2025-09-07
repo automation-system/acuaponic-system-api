@@ -15,6 +15,9 @@ $ nohup npm run start:prod > api.log 2>&1 &
 # > api.log 2>&1 → redirige logs a un archivo (api.log).
 # & → lo manda al background.
 
+# Para evitar cerrar
+$ disown -h %1
+
 # Para verificar que está corriendo:
 $ ps aux | grep node
 $ ps -ef | grep "node dist/main"
