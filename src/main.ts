@@ -21,6 +21,6 @@ async function bootstrap() {
   app.useGlobalFilters(new DomainExceptionFilter());
 
 
-  await app.listen(3000);
+  await app.listen(3031);
 }
 bootstrap();
