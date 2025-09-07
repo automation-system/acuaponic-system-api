@@ -9,13 +9,21 @@ import { UpdateActuatorUseCase } from "./application/use-cases/actuator/update-a
 import { ActuatorRepository } from "./domain/repositories/actuator.repository";
 import { ActuatorPrismaRepository } from "./infrastructure/presistence/actuator.prisma.repository";
 import { ActuatorController } from "./presentation/controllers/actuator.controller";
+import { Dht22Service } from "./application/services/dht22.service";
+import { CreateDht22UseCase } from "./application/use-cases/dht22/create-dht22.use-case";
+import { GetDht22sUseCase } from "./application/use-cases/dht22/get-dht22.use-case";
+import { Dht22Repository } from "./domain/repositories/dht22.repository";
+import { Dht22PrismaRepository } from "./infrastructure/presistence/dht22.prisma.repository";
+import { Dht22Controller } from "./presentation/controllers/dht22-sensor.controller";
 
 
 @Module({
     imports: [], 
-    controllers: [ActuatorController],
+    controllers: [ActuatorController,Dht22Controller],
     providers: [
         PrismaService,
+
+        //Actuator
         ActuatorService,
         CreateActuatorUseCase,
         DeleteActuatorUseCase,
@@ -23,8 +31,16 @@ import { ActuatorController } from "./presentation/controllers/actuator.controll
         GetActuatorsUseCase,
         UpdateActuatorUseCase,
         {
-            provide:ActuatorRepository,useClass:ActuatorPrismaRepository
-        }        
+            provide: ActuatorRepository, useClass: ActuatorPrismaRepository
+        }, 
+        
+        //Dht22
+        Dht22Service,
+        CreateDht22UseCase,
+        GetDht22sUseCase,
+        {
+            provide: Dht22Repository, useClass:Dht22PrismaRepository
+        }
     ],
     exports: [],
 })

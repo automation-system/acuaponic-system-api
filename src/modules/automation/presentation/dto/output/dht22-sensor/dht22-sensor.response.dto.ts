@@ -4,6 +4,6 @@ export class Dht22SensorResponseDto {
     temperatureFahrenheit?: number;
     temperatureKelvin?: number;
     humidity: number;
-    createdAt?: Date;
     automationId?: string;
+    createdAt?: Date;    
 }  

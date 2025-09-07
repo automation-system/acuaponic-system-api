@@ -4,8 +4,8 @@ export class Dht22Sensor {
       public temperatureCelsius: number,
       public humidity: number,
       public temperatureFahrenheit?: number,
-      public temperatureKelvin?: number,      
-      public createdAt?: Date,
-      public automationId?: string,
+      public temperatureKelvin?: number, 
+      public automationId?: string,     
+      public createdAt?: Date,      
     ) {}
 }  

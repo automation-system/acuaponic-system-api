@@ -52,8 +52,8 @@ model Automation {
 model Ph {
   phId                  String    @id @db.VarChar(36) @map("ph_id")
   analogDigitalConverter Int?      @map("analog_digital_converter")
-  voltaje               Decimal?  @db.Decimal(3, 2)
-  phValue               Decimal  @db.Decimal(2,2) @map("ph_value")
+  voltaje               Decimal?  @db.Decimal(5, 2)
+  phValue               Decimal  @db.Decimal(5,2) @map("ph_value")
   createdAt             DateTime? @default(now()) @map("created_at")
 
   automationId String?
@@ -64,10 +64,10 @@ model Ph {
 
 model Dht22Sensor {
   dht22SensorId        String    @id @db.VarChar(36) @map("dht22_sensor_id")
-  temperatureCelsius   Decimal  @db.Decimal(3, 2) @map("temperature_celsius")
-  temperatureFahrenheit Decimal? @db.Decimal(3, 2) @map("temperature_fahrenheit")
-  temperatureKelvin    Decimal?  @db.Decimal(3, 2) @map("temperature_kelvin")
-  humidity             Decimal  @db.Decimal(2, 2)
+  temperatureCelsius   Decimal  @db.Decimal(5, 2) @map("temperature_celsius")
+  temperatureFahrenheit Decimal? @db.Decimal(5, 2) @map("temperature_fahrenheit")
+  temperatureKelvin    Decimal?  @db.Decimal(5, 2) @map("temperature_kelvin")
+  humidity             Decimal  @db.Decimal(5, 2)
   createdAt            DateTime? @default(now()) @map("created_at")
 
   automationId String?
@@ -78,9 +78,9 @@ model Dht22Sensor {
 
 model Ds18b20Sensor {
   ds18b20SensorId      String    @id @db.VarChar(36) @map("ds18b20_sensor_id")
-  temperatureCelsius   Decimal  @db.Decimal(3, 2) @map("temperature_celsius")
-  temperatureFahrenheit Decimal? @db.Decimal(3, 2) @map("temperature_fahrenheit")
-  temperatureKelvin    Decimal?  @db.Decimal(3, 2) @map("temperature_kelvin")
+  temperatureCelsius   Decimal  @db.Decimal(5, 2) @map("temperature_celsius")
+  temperatureFahrenheit Decimal? @db.Decimal(5, 2) @map("temperature_fahrenheit")
+  temperatureKelvin    Decimal?  @db.Decimal(5, 2) @map("temperature_kelvin")
   createdAt            DateTime? @default(now()) @map("created_at")
 
   automationId String?
@@ -105,7 +105,7 @@ model Actuator {
 model UltrasonicDistanceSensor {
   ultrasonicDistanceSensorId String   @id @db.VarChar(36) @map("ultrasonic_distance_sensor_id")
   time                       Int?
-  distance                   Decimal @db.Decimal(3, 2)
+  distance                   Decimal @db.Decimal(5, 2)
   createdAt                  DateTime? @default(now()) @map("created_at")
 
   automationId String?
@@ -117,7 +117,7 @@ model UltrasonicDistanceSensor {
 model TurbiditySensor {
   turbiditySensorId      String   @id @db.VarChar(36) @map("turbidity_sensor_id")
   analogDigitalConverter Int?     @map("analog_digital_converter")
-  voltaje                Decimal? @db.Decimal(3, 2)
+  voltaje                Decimal? @db.Decimal(5, 2)
   turbidity              Int
   createdAt              DateTime? @default(now()) @map("created_at")
 
